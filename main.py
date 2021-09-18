@@ -45,8 +45,8 @@ def getscores(page):
         y = y + count
         print('\nUrl: {}\ncontains {} occurrences of word: {}'.format(url, count, word))
         z = x + y
-    posscore = str(round(((x / z) * 100), 2)) + "%"
-    negscore = str(round(((y / z) * 100), 2)) + "%"
+    posscore = round(((x / z) * 100), 2)
+    negscore = round(((y / z) * 100), 2)
 
     print('\npositive score:', x)
     print('negative score:', y)
