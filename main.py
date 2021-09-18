@@ -1,5 +1,5 @@
+import flask
 import requests
-
 from flask import Flask, json, request
 
 api = Flask(__name__)
@@ -16,7 +16,7 @@ def count_words(url, word):
     return r.count(word)
 
 
-def main(page):
+def getscores(page):
     global x, y, z, posscore, negscore
     url = 'https://en.wikipedia.org/wiki/' + page
 
@@ -58,9 +58,10 @@ def main(page):
 @api.route('/wordscores', methods=['GET'])
 def get_wordscores():
     page = request.args.get('page')
-    main(page)
-    return json.dumps({"positiveScore": x, "negativeScore": y, "totalScore": z, "thumbsUpScore": posscore,
-                       "thumbsDownScore": negscore})
+    getscores(page)
+    resp = flask.Response(json.dumps({"positiveScore": x, "negativeScore": y, "totalScore": z, "thumbsUpScore": posscore, "thumbsDownScore": negscore}))
+    resp.headers['Access-Control-Allow-Origin'] = '*'
+    return resp
 
 
 if __name__ == '__main__':
