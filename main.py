@@ -18,6 +18,11 @@ def count_words(url, word):
 
 def getscores(page):
     global x, y, z, posscore, negscore
+    x = 0
+    y = 0
+    z = 0
+    posscore = 0
+    negscore = 0
     url = 'https://en.wikipedia.org/wiki/' + page
 
     poswords = ['green', 'energy efficient', 'electric cars', 'environmental', 'friendly', 'environmentally friendly',
